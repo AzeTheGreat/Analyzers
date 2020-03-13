@@ -1,2 +1,1 @@
-# Analyzers
- 
+WIP Roslyn Analyzers for various applicationss
