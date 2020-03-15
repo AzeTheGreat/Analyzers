@@ -1,9 +1,11 @@
 ﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
+using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace HarmonyAnalyzers
 {
@@ -15,27 +17,33 @@ namespace HarmonyAnalyzers
             {
                 var name = method.ReturnType.Name;
                 return name == nameof(MethodInfo) || name == nameof(MethodBase);
-            }),
+            },
+                () => IdentifierName(nameof(MethodBase))),
             new HarmonyMethodType("TargetMethods", (IMethodSymbol method) =>
             {
                 var name = method.ReturnType.Name;
                 return name == nameof(IEnumerable<MethodInfo>) || name == nameof(IEnumerable<MethodBase>);
-            }),
-            new HarmonyMethodType("Prepare", (IMethodSymbol method) => method.ReturnType.Equals(SpecialType.System_Boolean)),
+            },
+                () => GenericName("IEnumerable").AddTypeArgumentListArguments(IdentifierName(nameof(MethodBase)))),
+            new HarmonyMethodType("Prepare", (IMethodSymbol method) => method.ReturnType.Equals(SpecialType.System_Boolean), () => PredefinedType(Token(SyntaxKind.BoolKeyword))),
             new HarmonyMethodType("Prefix", (IMethodSymbol method) =>
             {
                 var type = method.ReturnType.SpecialType;
-                return type.Equals(SpecialType.System_Void) || type.Equals(SpecialType.System_Boolean);
-            }),
+                return method.ReturnsVoid || type.Equals(SpecialType.System_Boolean);
+            },
+                () => PredefinedType(Token(SyntaxKind.VoidKeyword))),
             new HarmonyMethodType("Postfix", (IMethodSymbol method) =>
             {
                 // TODO: Add Passthrough support
-                return method.ReturnType.SpecialType.Equals(SpecialType.System_Void);
-            }),
+                return method.ReturnsVoid;
+            },
+                () => PredefinedType(Token(SyntaxKind.VoidKeyword))),
+            // TODO: Figure out these strings
             new HarmonyMethodType("Transpiler", (IMethodSymbol method) =>
             {
                 return method.ReturnType.Name == "";
-            })
+            },
+                () => GenericName("IEnumerable").AddTypeArgumentListArguments(IdentifierName("CodeInstruction")))
         };
 
         public static bool IsHarmonyMethod(this IMethodSymbol methodSymbol)
@@ -67,17 +75,18 @@ namespace HarmonyAnalyzers
 
         public class HarmonyMethodType
         {
-            public HarmonyMethodType(string name, Func<IMethodSymbol, bool> isReturnTypeValid)
+            public HarmonyMethodType(string name, Func<IMethodSymbol, bool> isReturnTypeValid, Func<TypeSyntax> getReturnTypeSyntax)
             {
                 this.name = name;
                 attribute = "Harmony" + name;
                 this.isReturnTypeValid = isReturnTypeValid;
+                this.getReturnTypeSyntax = getReturnTypeSyntax;
             }
 
             public string name;
             public string attribute;
-            //public List<string> returnTypes;
             public Func<IMethodSymbol, bool> isReturnTypeValid;
+            public Func<TypeSyntax> getReturnTypeSyntax;
         }
     }
 }

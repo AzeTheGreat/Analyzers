@@ -8,7 +8,7 @@
 
   <PropertyGroup>
     <PackageId>HarmonyAnalyzers</PackageId>
-    <PackageVersion>1.0.0.0</PackageVersion>
+    <PackageVersion>2.0.0.5</PackageVersion>
     <Authors>Nathan</Authors>
     <PackageLicenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</PackageLicenseUrl>
     <PackageProjectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</PackageProjectUrl>

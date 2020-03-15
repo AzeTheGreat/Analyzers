@@ -35,8 +35,15 @@ namespace HarmonyAnalyzers
                 if (!harmonyMethodType.isReturnTypeValid(methodSymbol))
                     context.ReportDiagnostic(Diagnostic.Create(
                        rule,
-                       context.Node.ChildNodes().First(x => x.IsKind(SyntaxKind.PredefinedType)).GetLocation(),
+                       context.Node.ChildNodes().First(x => IsReturnType(x)).GetLocation(),
                        methodSymbol.Name));
+            }
+
+            bool IsReturnType(SyntaxNode node)
+            {
+                return node.IsKind(SyntaxKind.PredefinedType) ||
+                    node.IsKind(SyntaxKind.IdentifierName) ||
+                    node.IsKind(SyntaxKind.GenericName);
             }
         }
     }
