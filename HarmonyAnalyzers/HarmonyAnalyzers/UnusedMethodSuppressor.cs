@@ -18,9 +18,9 @@ namespace HarmonyAnalyzers
         {
             foreach (var diagnostic in context.ReportedDiagnostics)
             {
-                var symbol = GetSymbolForDiagnostic(diagnostic, context) as IMethodSymbol;
+                if (!(GetSymbolForDiagnostic(diagnostic, context) is IMethodSymbol symbol))
+                    return;
 
-                // If method is a Harmony method, suppress the warning.
                 if (symbol.IsHarmonyMethod())
                     context.ReportSuppression(Suppression.Create(suppressionDescriptor, diagnostic));
             }
