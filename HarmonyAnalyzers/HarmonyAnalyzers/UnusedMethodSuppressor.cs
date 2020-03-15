@@ -2,7 +2,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 using System.Collections.Immutable;
 
-namespace Harmony
+namespace HarmonyAnalyzers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public sealed class UnusedMethodSuppressor : DiagnosticSuppressor
@@ -18,10 +18,10 @@ namespace Harmony
         {
             foreach (var diagnostic in context.ReportedDiagnostics)
             {
-                var symbol = GetSymbolForDiagnostic(diagnostic, context);
+                var symbol = GetSymbolForDiagnostic(diagnostic, context) as IMethodSymbol;
 
                 // If method is a Harmony method, suppress the warning.
-                if (Util.IsHarmonyMethod(symbol))
+                if (symbol.IsHarmonyMethod())
                     context.ReportSuppression(Suppression.Create(suppressionDescriptor, diagnostic));
             }
         }

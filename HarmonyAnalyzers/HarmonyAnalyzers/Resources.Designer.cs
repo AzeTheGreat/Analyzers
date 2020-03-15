@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Harmony {
+namespace HarmonyAnalyzers {
     using System;
     
     

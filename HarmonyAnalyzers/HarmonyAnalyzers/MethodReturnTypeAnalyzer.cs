@@ -6,16 +6,13 @@ using System.Linq;
 
 namespace HarmonyAnalyzers
 {
-    // Harmony methods must be static.
-    // Checks if a method is in a harmony class, has a harmony name, and is not yet static.
-
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class StaticMethodAnalyzer : DiagnosticAnalyzer
+    public sealed class MethodReturnTypeAnalyzer : DiagnosticAnalyzer
     {
         public static readonly DiagnosticDescriptor rule = new DiagnosticDescriptor(
-            id: "HAR0001",
-            title: "Harmony methods must be static",
-            messageFormat: "Make method `{0}` static to be used by Harmony.",
+            id: "HAR0003",
+            title: "Harmony method requires specific return type",
+            messageFormat: "Change return type of `{0}`",
             category: "Usage",
             defaultSeverity: DiagnosticSeverity.Warning,
             isEnabledByDefault: true);
@@ -31,13 +28,16 @@ namespace HarmonyAnalyzers
 
         private void AnalyzeNode(SyntaxNodeAnalysisContext context)
         {
-            var symbol = context.SemanticModel.GetDeclaredSymbol(context.Node) as IMethodSymbol;
+            var methodSymbol = context.SemanticModel.GetDeclaredSymbol(context.Node) as IMethodSymbol;
 
-            if (symbol.IsInHarmonyClass() && symbol.IsHarmonyMethodName() && !symbol.IsStatic)
-                context.ReportDiagnostic(Diagnostic.Create(
-                    rule,
-                    context.Node.DescendantTokens().First(x => x.IsKind(SyntaxKind.IdentifierToken)).GetLocation(),
-                    symbol.Name));
+            if (methodSymbol.TryGetHarmonyMethodType(out var harmonyMethodType))
+            {
+                if (!harmonyMethodType.isReturnTypeValid(methodSymbol))
+                    context.ReportDiagnostic(Diagnostic.Create(
+                       rule,
+                       context.Node.ChildNodes().First(x => x.IsKind(SyntaxKind.PredefinedType)).GetLocation(),
+                       methodSymbol.Name));
+            }
         }
     }
 }

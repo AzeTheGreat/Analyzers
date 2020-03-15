@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TestHelper;
 
-namespace Harmony.Test
+namespace HarmonyAnalyzers.Test
 {
     [TestClass]
     public class StaticMethodTest : CodeFixVerifier

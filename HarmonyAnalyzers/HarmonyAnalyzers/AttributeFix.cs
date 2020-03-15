@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
-namespace Harmony
+namespace HarmonyAnalyzers
 {
     [ExportCodeFixProvider(LanguageNames.CSharp)]
     public sealed class AttributeFix : CodeFixProvider

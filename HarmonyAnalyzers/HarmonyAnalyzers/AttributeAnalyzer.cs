@@ -5,7 +5,7 @@ using Microsoft.CodeAnalysis.Diagnostics;
 using System.Collections.Immutable;
 using System.Linq;
 
-namespace Harmony
+namespace HarmonyAnalyzers
 {
     // Harmony methods require a [HarmonyPatch] attribute on their class
 
@@ -34,9 +34,9 @@ namespace Harmony
             var model = context.SemanticModel;
 
             // Return if class is already a Harmony class
-            var classSymbol = model.GetDeclaredSymbol(context.Node);
+            var classSymbol = model.GetDeclaredSymbol(context.Node) as INamedTypeSymbol;
 
-            if (Util.IsInHarmonyClass(classSymbol))
+            if (classSymbol.IsHarmonyClass())
                 return;
 
             // Iterate each method in the class and report if any are Harmony named
@@ -44,8 +44,8 @@ namespace Harmony
 
             foreach (var method in methods)
             {
-                var methodSymbol = model.GetDeclaredSymbol(method);
-                if (Util.IsHarmonyMethodName(methodSymbol))
+                var methodSymbol = model.GetDeclaredSymbol(method) as IMethodSymbol;
+                if (methodSymbol.IsHarmonyMethodName())
                 {
                     context.ReportDiagnostic(Diagnostic.Create(
                         rule,
