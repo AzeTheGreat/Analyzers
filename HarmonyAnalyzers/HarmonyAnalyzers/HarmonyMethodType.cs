@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using HarmonyAnalyzers.Interface;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
@@ -11,6 +12,7 @@ namespace HarmonyAnalyzers
 {
     public static class HarmonyDef
     {
+        // TODO: Make this...not ugly...
         private static readonly List<HarmonyMethodType> harmonyMethodDefs = new List<HarmonyMethodType>()
         {
             new HarmonyMethodType("TargetMethod", (IMethodSymbol method) =>
@@ -19,29 +21,35 @@ namespace HarmonyAnalyzers
                 return name == nameof(MethodInfo) || name == nameof(MethodBase);
             },
                 () => IdentifierName(nameof(MethodBase))),
+
             new HarmonyMethodType("TargetMethods", (IMethodSymbol method) =>
             {
                 var name = method.ReturnType.Name;
                 return name == nameof(IEnumerable<MethodInfo>) || name == nameof(IEnumerable<MethodBase>);
             },
                 () => GenericName("IEnumerable").AddTypeArgumentListArguments(IdentifierName(nameof(MethodBase)))),
-            new HarmonyMethodType("Prepare", (IMethodSymbol method) => method.ReturnType.Equals(SpecialType.System_Boolean), () => PredefinedType(Token(SyntaxKind.BoolKeyword))),
+            
+            new HarmonyMethodType("Prepare", (IMethodSymbol method) => method.ReturnType.SpecialType.Equals(SpecialType.System_Boolean), () => PredefinedType(Token(SyntaxKind.BoolKeyword))),
+            
             new HarmonyMethodType("Prefix", (IMethodSymbol method) =>
             {
                 var type = method.ReturnType.SpecialType;
                 return method.ReturnsVoid || type.Equals(SpecialType.System_Boolean);
             },
                 () => PredefinedType(Token(SyntaxKind.VoidKeyword))),
+            
             new HarmonyMethodType("Postfix", (IMethodSymbol method) =>
             {
-                // TODO: Add Passthrough support
-                return method.ReturnsVoid;
+#pragma warning disable RS1024 // Compare symbols correctly - Not sure why this is triggering here, and the fix errors.
+                return method.ReturnsVoid || method.ReturnType.Equals(method.Parameters.FirstOrDefault()?.Type);
+#pragma warning restore RS1024 // Compare symbols correctly
             },
                 () => PredefinedType(Token(SyntaxKind.VoidKeyword))),
-            // TODO: Figure out these strings
+            
             new HarmonyMethodType("Transpiler", (IMethodSymbol method) =>
             {
-                return method.ReturnType.Name == "";
+                var type = method.ReturnType as INamedTypeSymbol;
+                return type.ConstructedFrom.SpecialType.Equals(SpecialType.System_Collections_Generic_IEnumerable_T) && type.TypeArguments.FirstOrDefault()?.Name == "CodeInstruction";
             },
                 () => GenericName("IEnumerable").AddTypeArgumentListArguments(IdentifierName("CodeInstruction")))
         };
@@ -53,7 +61,28 @@ namespace HarmonyAnalyzers
 
         public static bool IsInHarmonyClass(this IMethodSymbol methodSymbol) => methodSymbol.ContainingType.IsHarmonyClass();
 
-        public static bool IsHarmonyClass(this INamedTypeSymbol namedTypeSymbol) => namedTypeSymbol.GetAttributes().Any(x => x.AttributeClass.Name == "HarmonyPatch");
+        public static bool IsHarmonyClass(this INamedTypeSymbol namedTypeSymbol)
+        {
+            do
+            {
+                if (IsHarmonyClassAtLevel(namedTypeSymbol))
+                    return true;
+            } while ((namedTypeSymbol = namedTypeSymbol.BaseType) != null);
+            return false;
+
+            bool IsHarmonyClassAtLevel(INamedTypeSymbol typeSymbol)
+            {
+                foreach (var attribute in typeSymbol.GetAttributes())
+                {
+                    var name = attribute.AttributeClass.Name;                                                               // Consider it a Harmony class if:
+                    if (name == "HarmonyPatch" ||                                                                               // That class has the patch attribute (normal usage)
+                        name == nameof(HarmonyPatchMock) ||                                                                     // That class has the mock attribute (useful for manual patching)
+                        attribute.AttributeClass.GetAttributes().Any(x => x.AttributeClass.Name == nameof(HarmonyPatchMock)))   // Any of the attributes have the mock attribute (useful for reflection)
+                        return true;
+                }
+                return false;
+            }
+        }
 
         public static bool IsHarmonyMethodName(this IMethodSymbol methodSymbol)
         {

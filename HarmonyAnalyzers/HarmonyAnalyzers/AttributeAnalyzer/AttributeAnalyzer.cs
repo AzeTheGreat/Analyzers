@@ -40,7 +40,7 @@ namespace HarmonyAnalyzers
                 return;
 
             // Iterate each method in the class and report if any are Harmony named
-            var methods = context.Node.DescendantNodes().OfType<MethodDeclarationSyntax>();
+            var methods = context.Node.ChildNodes().OfType<MethodDeclarationSyntax>();
 
             foreach (var method in methods)
             {

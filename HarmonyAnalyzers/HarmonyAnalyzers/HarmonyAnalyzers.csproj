@@ -4,11 +4,12 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup>
     <PackageId>HarmonyAnalyzers</PackageId>
-    <PackageVersion>2.0.0.6</PackageVersion>
+    <PackageVersion>2.0.0.14</PackageVersion>
     <Authors>Nathan</Authors>
     <PackageLicenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</PackageLicenseUrl>
     <PackageProjectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</PackageProjectUrl>
@@ -42,6 +43,12 @@
   <ItemGroup>
     <None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath="" />
     <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="$(OutputPath)\$(AssemblyName).Interface.dll" Pack="true" PackagePath="lib/net40" Visible="false" />
+    <None Include="$(OutputPath)\$(AssemblyName).Interface.xml" Pack="true" PackagePath="lib/net40" Visible="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HarmonyAnalyzers.Interface\HarmonyAnalyzers.Interface.csproj" />
   </ItemGroup>
 
 </Project>
