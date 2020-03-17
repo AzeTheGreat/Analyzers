@@ -8,15 +8,14 @@
 
   <PropertyGroup>
     <PackageId>HarmonyAnalyzers</PackageId>
-    <PackageVersion>2.0.0.15</PackageVersion>
+    <Title>HarmonyLib Analyzers</Title>
+    <PackageVersion>1.0.0.0</PackageVersion>
     <Authors>Aze</Authors>
-    <PackageLicenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</PackageLicenseUrl>
-    <PackageProjectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</PackageProjectUrl>
-    <PackageIconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</PackageIconUrl>
-    <RepositoryUrl>http://REPOSITORY_URL_HERE_OR_DELETE_THIS_LINE</RepositoryUrl>
+    <RepositoryUrl>https://github.com/AzeTheGreat/Analyzers/tree/master/HarmonyAnalyzers</RepositoryUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Description>HarmonyAnalyzers</Description>
-    <PackageReleaseNotes>Summary of changes made in this release of the package.</PackageReleaseNotes>
+    <Description>Used with the Harmony library. Assists with writing valid patches.</Description>
+    <PackageReleaseNotes>Initial.</PackageReleaseNotes>
     <Copyright>Copyright</Copyright>
     <PackageTags>HarmonyAnalyzers, analyzers</PackageTags>
     <NoPackageAnalysis>true</NoPackageAnalysis>

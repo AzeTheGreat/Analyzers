@@ -8,15 +8,14 @@
 
   <PropertyGroup>
     <PackageId>OniAnalyzers</PackageId>
-    <PackageVersion>1.0.0.7</PackageVersion>
+    <Title>ONI Analyzers</Title>
+    <PackageVersion>1.0.0.0</PackageVersion>
     <Authors>Aze</Authors>
-    <PackageLicenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</PackageLicenseUrl>
-    <PackageProjectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</PackageProjectUrl>
-    <PackageIconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</PackageIconUrl>
-    <RepositoryUrl>http://REPOSITORY_URL_HERE_OR_DELETE_THIS_LINE</RepositoryUrl>
+    <RepositoryUrl>https://github.com/AzeTheGreat/Analyzers/tree/master/OniAnalyzers</RepositoryUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Description>OniAnalyzers</Description>
-    <PackageReleaseNotes>Summary of changes made in this release of the package.</PackageReleaseNotes>
+    <Description>Used when modding Oxygen Not Included. Suppresses warnings caused by reflection.</Description>
+    <PackageReleaseNotes>Initial.</PackageReleaseNotes>
     <Copyright>Copyright</Copyright>
     <PackageTags>OniAnalyzers, analyzers</PackageTags>
     <NoPackageAnalysis>true</NoPackageAnalysis>
@@ -36,6 +35,7 @@
   <ItemGroup>
     <None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath="" />
     <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="..\..\LICENSE" Pack ="true" PackagePath="" />
   </ItemGroup>
 
 </Project>

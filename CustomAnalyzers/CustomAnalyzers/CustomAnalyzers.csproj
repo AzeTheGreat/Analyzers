@@ -7,18 +7,17 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>CustomAnalyzers</PackageId>
-    <PackageVersion>1.0.0.2</PackageVersion>
+    <PackageId>SuppressionAttributes</PackageId>
+    <Title>Suppression Attributes</Title>
+    <PackageVersion>1.0.0.0</PackageVersion>
     <Authors>Aze</Authors>
-    <PackageLicenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</PackageLicenseUrl>
-    <PackageProjectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</PackageProjectUrl>
-    <PackageIconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</PackageIconUrl>
-    <RepositoryUrl>http://REPOSITORY_URL_HERE_OR_DELETE_THIS_LINE</RepositoryUrl>
+    <RepositoryUrl>https://github.com/AzeTheGreat/Analyzers/tree/master/CustomAnalyzers</RepositoryUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Description>CustomAnalyzers</Description>
-    <PackageReleaseNotes>Summary of changes made in this release of the package.</PackageReleaseNotes>
+    <Description>Roslyn analyzers designed that allow the suppression of warnings caused by reflection in your code.</Description>
+    <PackageReleaseNotes>Initial.</PackageReleaseNotes>
     <Copyright>Copyright</Copyright>
-    <PackageTags>CustomAnalyzers, analyzers</PackageTags>
+    <PackageTags>SuppressionAttributes, analyzers</PackageTags>
     <NoPackageAnalysis>true</NoPackageAnalysis>
   </PropertyGroup>
 
