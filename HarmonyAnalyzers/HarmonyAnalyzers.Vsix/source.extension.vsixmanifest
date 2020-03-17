@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="HarmonyAnalyzers.054a5b92-7ada-429e-ac08-8a01aebcd842" Version="1.0" Language="en-US" Publisher="Nathan"/>
+        <Identity Id="HarmonyAnalyzers.054a5b92-7ada-429e-ac08-8a01aebcd842" Version="1.0" Language="en-US" Publisher="Aze"/>
         <DisplayName>HarmonyAnalyzers</DisplayName>
         <Description xml:space="preserve">This is a sample diagnostic extension for the .NET Compiler Platform ("Roslyn").</Description>
     </Metadata>
