@@ -5,5 +5,5 @@ Roslyn analyzers designed to help when writing [Oxygen Not Included](https://www
 **Installation:**  
 Grab the most recent [NuGet package](https://www.nuget.org/packages/OniAnalyzers).
 
-**Usage:**
+**Usage:**  
 The analyzers will automatically suppress warnings caused by using `[MyCmp...]` attributes in your code.
