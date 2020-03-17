@@ -5,8 +5,8 @@ Roslyn analyzers designed to work with the Harmony modding library, and games th
 **Harmony Analyzers:**  
 Used with the Harmony library.  Assists with writing valid patches.
 
-**ONI Analyzers:**
+**ONI Analyzers:**  
 Used when modding Oxygen Not Included.  Suppresses warnings caused by reflection.
 
-**Suppression Attributes:**
+**Suppression Attributes:**  
 Provides attributes for suppressing warnings caused by reflection in your code.
