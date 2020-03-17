@@ -14,6 +14,6 @@ namespace OniAnalyzers.Test
             VerifyCSharpDiagnostic(test);
         }
 
-        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer() => new MyCmpSuppressor();
+        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer() => new NeverUsedSuppressor();
     }
 }

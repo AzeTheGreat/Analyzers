@@ -21,15 +21,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ONI", "ONI", "{0CCA2BF3-BCB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HarmonyAnalyzers.Interface", "HarmonyAnalyzers\HarmonyAnalyzers.Interface\HarmonyAnalyzers.Interface.csproj", "{D3E23D44-C9E3-41D7-836C-978B004849CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomAnalyzers", "CustomAnalyzers\CustomAnalyzers\CustomAnalyzers.csproj", "{565F0112-B917-4AEE-8493-FC2375DAC115}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomAnalyzers", "CustomAnalyzers\CustomAnalyzers\CustomAnalyzers.csproj", "{565F0112-B917-4AEE-8493-FC2375DAC115}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomAnalyzers.Test", "CustomAnalyzers\CustomAnalyzers.Test\CustomAnalyzers.Test.csproj", "{65D7E4BF-6028-4B88-B49B-6ECD59429957}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomAnalyzers.Test", "CustomAnalyzers\CustomAnalyzers.Test\CustomAnalyzers.Test.csproj", "{65D7E4BF-6028-4B88-B49B-6ECD59429957}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomAnalyzers.Vsix", "CustomAnalyzers\CustomAnalyzers.Vsix\CustomAnalyzers.Vsix.csproj", "{E88CB641-F27A-4BB1-8A3B-79A2883599DA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Custom", "Custom", "{49B6D59E-F4CA-4C60-A730-0F212A03B1A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomAnalyzers.Interface", "CustomAnalyzers.Interface\CustomAnalyzers.Interface.csproj", "{338CF28D-301E-4EDC-87F0-C6C4AAE7231B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomAnalyzers.Interface", "CustomAnalyzers\CustomAnalyzers.Interface\CustomAnalyzers.Interface.csproj", "{314CF42A-6F77-4AD3-82D6-6D0CC0141379}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,10 +77,10 @@ Global
 		{E88CB641-F27A-4BB1-8A3B-79A2883599DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E88CB641-F27A-4BB1-8A3B-79A2883599DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E88CB641-F27A-4BB1-8A3B-79A2883599DA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{338CF28D-301E-4EDC-87F0-C6C4AAE7231B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{338CF28D-301E-4EDC-87F0-C6C4AAE7231B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{338CF28D-301E-4EDC-87F0-C6C4AAE7231B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{338CF28D-301E-4EDC-87F0-C6C4AAE7231B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{314CF42A-6F77-4AD3-82D6-6D0CC0141379}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{314CF42A-6F77-4AD3-82D6-6D0CC0141379}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{314CF42A-6F77-4AD3-82D6-6D0CC0141379}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{314CF42A-6F77-4AD3-82D6-6D0CC0141379}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,7 +96,7 @@ Global
 		{565F0112-B917-4AEE-8493-FC2375DAC115} = {49B6D59E-F4CA-4C60-A730-0F212A03B1A9}
 		{65D7E4BF-6028-4B88-B49B-6ECD59429957} = {49B6D59E-F4CA-4C60-A730-0F212A03B1A9}
 		{E88CB641-F27A-4BB1-8A3B-79A2883599DA} = {49B6D59E-F4CA-4C60-A730-0F212A03B1A9}
-		{338CF28D-301E-4EDC-87F0-C6C4AAE7231B} = {49B6D59E-F4CA-4C60-A730-0F212A03B1A9}
+		{314CF42A-6F77-4AD3-82D6-6D0CC0141379} = {49B6D59E-F4CA-4C60-A730-0F212A03B1A9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {609A2392-004A-4463-8029-F71A5FEA8191}

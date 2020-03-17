@@ -7,26 +7,20 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>HarmonyAnalyzers</PackageId>
-    <PackageVersion>2.0.0.15</PackageVersion>
+    <PackageId>CustomAnalyzers</PackageId>
+    <PackageVersion>1.0.0.2</PackageVersion>
     <Authors>Nathan</Authors>
     <PackageLicenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</PackageLicenseUrl>
     <PackageProjectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</PackageProjectUrl>
     <PackageIconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</PackageIconUrl>
     <RepositoryUrl>http://REPOSITORY_URL_HERE_OR_DELETE_THIS_LINE</RepositoryUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Description>HarmonyAnalyzers</Description>
+    <Description>CustomAnalyzers</Description>
     <PackageReleaseNotes>Summary of changes made in this release of the package.</PackageReleaseNotes>
     <Copyright>Copyright</Copyright>
-    <PackageTags>HarmonyAnalyzers, analyzers</PackageTags>
+    <PackageTags>CustomAnalyzers, analyzers</PackageTags>
     <NoPackageAnalysis>true</NoPackageAnalysis>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="bin\**" />
-    <EmbeddedResource Remove="bin\**" />
-    <None Remove="bin\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="2.9.8" PrivateAssets="all" />
@@ -47,7 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HarmonyAnalyzers.Interface\HarmonyAnalyzers.Interface.csproj" />
+    <ProjectReference Include="..\CustomAnalyzers.Interface\CustomAnalyzers.Interface.csproj" />
   </ItemGroup>
 
 </Project>
